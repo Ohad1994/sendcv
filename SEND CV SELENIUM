@@ -1,0 +1,111 @@
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class SendCV {
+	
+	@SuppressWarnings("deprecation")
+	public static void main(String[] args) throws IOException, InterruptedException {
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.drushim.co.il/jobs/cat24/");
+		((JavascriptExecutor) driver).executeScript("document.body.style.zoom='60%';");
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		Thread.sleep(3000);
+
+		try {
+		       Robot robot = new Robot();
+
+		// Simulate a mouse click
+		   robot.mousePress(InputEvent.BUTTON1_MASK);
+		   robot.mouseRelease(InputEvent.BUTTON1_MASK);
+
+		// ctrl + F  
+
+		   robot.keyPress(KeyEvent.VK_CONTROL);
+		   robot.keyPress(KeyEvent.VK_F);
+
+		   // CTRL+F is now pressed 
+
+		   robot.keyRelease(KeyEvent.VK_F);
+		   robot.keyRelease(KeyEvent.VK_CONTROL);
+
+		} catch (AWTException e) {
+		       e.printStackTrace();
+		}
+		//צריך להעתיק "הצג" לקליפבורד כדי שהסקריפט יעבוד לפני שמריצים
+		//הצג
+		//הצג
+		//הצג
+		//הצג
+
+		Runtime.getRuntime().exec("\"C:\\Users\\Ohad\\Desktop\\desktop4\\HATZEG.exe");
+		Thread.sleep(3000);
+		// הצג הצג הצג
+		int i = 0;
+		while ( i < 4) {
+//			לוחץ על הצבע הספציפי שמו
+		Runtime.getRuntime().exec("\"C:\\Users\\Ohad\\Desktop\\desktop4\\colorextra1.exe");
+		Thread.sleep(2000);
+		i++;
+		}
+		
+		
+		 
+	
+
+	
+
+ 
+		Runtime.getRuntime().exec("\"C:\\Users\\Ohad\\Desktop\\desktop4\\SEND CV.exe");
+		Thread.sleep(6000);
+		WebElement email = driver.findElement(By.id("email-login-field"));
+		Thread.sleep(3000);
+
+		//email
+		//email
+		//email
+
+		
+		email.sendKeys("youtube152@gmail.com");
+		Thread.sleep(2000);
+		Runtime.getRuntime().exec("\"C:\\Users\\Ohad\\Desktop\\desktop4\\ahk\\tab.exe\"");
+		Thread.sleep(7000);
+
+		List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
+		driver.switchTo().window(browserTabs.get(0));
+		Runtime.getRuntime().exec("\"C:\\Users\\Ohad\\Desktop\\desktop4\\side click.exe");
+
+
+		for (int i1 = 0; i1 < 10000; i1++) {
+			Thread.sleep(1000);
+
+			Runtime.getRuntime().exec("\"C:\\Users\\Ohad\\Desktop\\desktop4\\SEND CV.exe");
+			Thread.sleep(1000);
+			driver.switchTo().window(browserTabs.get(0));
+			Runtime.getRuntime().exec("\"C:\\Users\\Ohad\\Desktop\\desktop4\\SEND CV.exe");
+			Thread.sleep(4000);
+			if (driver.getPageSource().contains("קורות החיים נשלחו בהצלחה")) {
+
+				Runtime.getRuntime().exec("\"C:\\Users\\Ohad\\Desktop\\desktop4\\side click.exe");
+
+			}
+			js.executeScript("window.scrollBy(0,-170)", "");
+		}
+	}
+	
+
+}
